@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
 
+    private enum MovementState { idle, running, jumping, falling }
+    private MovementState state;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         dirX = 0f;
+        state = MovementState.idle;
 
         //FALTA agregar sprite de personaje segun la skin que eliga el jugador
     }
@@ -39,19 +43,36 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateAnimationState()
     {
-        if (dirX > 0f)
+        MovementState state;
+
+        
+
+        if(rb.velocity.y > .1f)
         {
-            anim.SetBool("running", true);
-            sprite.flipX = false;
+            state = MovementState.jumping;
         }
-        else if (dirX < 0f)
+        else if(rb.velocity.y < -.1f)
         {
-            anim.SetBool("running", true);
-            sprite.flipX = true;    
+            state = MovementState.falling;
         }
         else
         {
-            anim.SetBool("running", false);
+            if (dirX > 0f)
+            {
+                state = MovementState.running;
+                sprite.flipX = false;
+            }
+            else if (dirX < 0f)
+            {
+                state = MovementState.running;
+                sprite.flipX = true;
+            }
+            else
+            {
+                state = MovementState.idle;
+            }
         }
+
+        anim.SetInteger("state", (int)state);
     }
 }
