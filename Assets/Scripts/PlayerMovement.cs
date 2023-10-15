@@ -5,11 +5,20 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Animator anim;
+    private SpriteRenderer sprite;
+    private float dirX;
+
+    [SerializeField] private float moveSpeed = 7f;
+    [SerializeField] private float jumpForce = 14f;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
+        dirX = 0f;
 
         //FALTA agregar sprite de personaje segun la skin que eliga el jugador
     }
@@ -17,13 +26,32 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float dirX = Input.GetAxisRaw("Horizontal");
-
-        rb.velocity = new Vector2(dirX * 7f, rb.velocity.y); //se mueve horizontalmente
+        dirX = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y); //se mueve horizontalmente
 
         if(Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x, 14); //cuando salta
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce); //cuando salta
+        }
+
+        UpdateAnimationState();
+    }
+
+    private void UpdateAnimationState()
+    {
+        if (dirX > 0f)
+        {
+            anim.SetBool("running", true);
+            sprite.flipX = false;
+        }
+        else if (dirX < 0f)
+        {
+            anim.SetBool("running", true);
+            sprite.flipX = true;    
+        }
+        else
+        {
+            anim.SetBool("running", false);
         }
     }
 }
