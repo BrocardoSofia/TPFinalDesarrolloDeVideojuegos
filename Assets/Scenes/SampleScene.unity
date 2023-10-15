@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 1110358714}
   - component: {fileID: 1110358716}
   - component: {fileID: 1110358715}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -978,20 +978,28 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1110358714}
     m_ColliderPaths:
-    - - X: -60000000
-        Y: -70000000
-      - X: 60000000
-        Y: -70000000
-      - X: 60000000
-        Y: -30000000
+    - - X: 60000000
+        Y: -29868002
       - X: -60000000
-        Y: -30000000
+        Y: -29868002
+      - X: -60000000
+        Y: -49779996
+      - X: 60000000
+        Y: -49779996
+    - - X: 60000000
+        Y: -49780000
+      - X: -60000000
+        Y: -49780000
+      - X: -60000000
+        Y: -69692000
+      - X: 60000000
+        Y: -69692000
   m_CompositePaths:
     m_Paths:
-    - - {x: 5.999971, y: -7}
-      - {x: 5.999971, y: -3}
-      - {x: -6, y: -3.0000293}
-      - {x: -5.999971, y: -7}
+    - - {x: 5.999971, y: -6.9692}
+      - {x: 5.999971, y: -2.9868002}
+      - {x: -6, y: -2.9868295}
+      - {x: -5.999971, y: -6.9692}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!50 &1110358716
@@ -4006,6 +4014,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aa53e855eeae142a9bdb4daf85a1dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpableGround:
+    serializedVersion: 2
+    m_Bits: 64
   moveSpeed: 7
   jumpForce: 14
 --- !u!95 &1948273833
