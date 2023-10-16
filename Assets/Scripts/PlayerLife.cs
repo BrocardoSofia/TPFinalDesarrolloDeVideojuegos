@@ -31,6 +31,10 @@ public class PlayerLife : MonoBehaviour
                 anim.SetTrigger("hit");
             }
         }
+        else
+        {
+            anim.ResetTrigger("hit");
+        }
     }
 
     private void Die()
