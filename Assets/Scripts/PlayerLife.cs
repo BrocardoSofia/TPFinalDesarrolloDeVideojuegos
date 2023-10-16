@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
     private int health;
+    [SerializeField] Sprite fullHeart;
+    [SerializeField] Sprite halfHeart;
+    [SerializeField] Sprite noHeart;
+    [SerializeField] Image heart1;
+    [SerializeField] Image heart2;
+    [SerializeField] Image heart3;
 
     private void Start()
     {
@@ -22,6 +29,8 @@ public class PlayerLife : MonoBehaviour
             health--;
             Debug.Log(health);
 
+            HeathBar();
+
             if(health == 0)
             {
                 Die();
@@ -34,6 +43,37 @@ public class PlayerLife : MonoBehaviour
         else
         {
             anim.ResetTrigger("hit");
+        }
+    }
+
+    private void HeathBar()
+    {
+        switch(health)
+        {
+            case 0:
+                //quitar ultimo corazon
+                heart3.sprite = noHeart;
+                break;
+            case 1:
+                //quitar medio al ultimo corazon
+                heart3.sprite = halfHeart;
+                break;
+            case 2:
+                //quitar segundo corazon
+                heart2.sprite = noHeart;
+                break;
+            case 3:
+                //quitar media vida al segundo corazon
+                heart2.sprite = halfHeart;
+                break;
+            case 4:
+                //quitar el ultimo corazon
+                heart1.sprite = noHeart;
+                break;
+            case 5:
+                //quitar media vida al ultimo corazon
+                heart1.sprite = halfHeart;
+                break;
         }
     }
 
