@@ -80,7 +80,6 @@ public class PlayerLife : MonoBehaviour
     {
         rb.bodyType = RigidbodyType2D.Static;
         anim.SetTrigger("death");
-        GameOver();
     }
 
     private void GameOver()
