@@ -27,7 +27,6 @@ public class PlayerLife : MonoBehaviour
         if(collision.gameObject.CompareTag("Trap"))
         {
             health--;
-            Debug.Log(health);
 
             HeathBar();
 
@@ -81,11 +80,13 @@ public class PlayerLife : MonoBehaviour
     {
         rb.bodyType = RigidbodyType2D.Static;
         anim.SetTrigger("death");
+        GameOver();
     }
 
     private void GameOver()
     {
-
+        //agregar pantalla de game over con el puntaje y un boton de casita para volver al menu principal
+        Debug.Log("GameOver");
     }
 
 }

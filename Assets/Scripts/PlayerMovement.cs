@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,15 +35,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dirX = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y); //se mueve horizontalmente
-
-        if(Input.GetButtonDown("Jump")  && IsGrounded())
+        if(rb.bodyType == RigidbodyType2D.Dynamic)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce); //cuando salta
-        }
+            dirX = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y); //se mueve horizontalmente
 
-        UpdateAnimationState();
+            if (Input.GetButtonDown("Jump") && IsGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce); //cuando salta
+            }
+
+            UpdateAnimationState();
+        }
+        
     }
 
     private void UpdateAnimationState()
