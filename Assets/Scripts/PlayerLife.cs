@@ -6,9 +6,11 @@ public class PlayerLife : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
+    private int health;
 
     private void Start()
     {
+        health = 6;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -17,7 +19,17 @@ public class PlayerLife : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Trap"))
         {
-            Die();
+            health--;
+            Debug.Log(health);
+
+            if(health == 0)
+            {
+                Die();
+            }
+            else
+            {
+                anim.SetTrigger("hit");
+            }
         }
     }
 
