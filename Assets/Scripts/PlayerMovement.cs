@@ -10,13 +10,14 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sprite;
     private float dirX;
+    private int jumpCount;
 
     [SerializeField] private LayerMask jumpableGround;
 
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
 
-    private enum MovementState { idle, running, jumping, falling, appearing, desaesappearing }
+    private enum MovementState { idle, running, jumping, falling, appearing, desaesappearing, doubleJump}
     private MovementState state;
 
     [SerializeField] private AudioSource jumpSoundEffect;
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         dirX = 0f;
         state = MovementState.idle;
+        jumpCount = 0;
 
         //FALTA agregar sprite de personaje segun la skin que eliga el jugador
     }
@@ -42,10 +44,11 @@ public class PlayerMovement : MonoBehaviour
             dirX = Input.GetAxisRaw("Horizontal");
             rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y); //se mueve horizontalmente
 
-            if (Input.GetButtonDown("Jump") && IsGrounded())
+            if (Input.GetButtonDown("Jump") && (IsGrounded() || jumpCount < 2))
             {
                 jumpSoundEffect.Play();
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce); //cuando salta
+                jumpCount++;
             }
 
             UpdateAnimationState();
@@ -57,13 +60,17 @@ public class PlayerMovement : MonoBehaviour
     {
         MovementState state;
 
-        if(rb.velocity.y > .1f)
+        if((rb.velocity.y > .1f) && (jumpCount != 2))
         {
             state = MovementState.jumping;
         }
         else if(rb.velocity.y < -.1f)
         {
             state = MovementState.falling;
+        }
+        else if(jumpCount == 2 && !IsGrounded())
+        {
+            state = MovementState.doubleJump;
         }
         else
         {
@@ -90,6 +97,13 @@ public class PlayerMovement : MonoBehaviour
     {
         //creo una nueva caja que esta un poquito mas abajo que la caja del personaje
         //para ver si se superpone con otra caja
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+        bool grounded = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+
+        if (grounded)
+        {
+            jumpCount = 0;
+        }
+
+        return grounded;
     }
 }

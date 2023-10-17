@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class ItemCollector : MonoBehaviour
 {
-    private int apples = 0;
     [SerializeField] private Text text_apples;
 
     [SerializeField] private AudioSource collectSoundEffect;
+
+    [SerializeField] private GameManager gameManager;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,8 +20,8 @@ public class ItemCollector : MonoBehaviour
             anim.Play("collected");
 
             Destroy(collision.gameObject, 0.5f);
-            apples++;
-            text_apples.text = "Apples: " + apples;
+            gameManager.addScore(100);
+            text_apples.text = gameManager.getScore() + " pts";
         }
     }
 }

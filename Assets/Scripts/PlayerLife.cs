@@ -19,6 +19,8 @@ public class PlayerLife : MonoBehaviour
     [SerializeField] Image heart2;
     [SerializeField] Image heart3;
 
+    [SerializeField] private GameManager gameManager;
+
     private void Start()
     {
         health = 6;
@@ -92,6 +94,7 @@ public class PlayerLife : MonoBehaviour
     {
         //agregar pantalla de game over con el puntaje y un boton de casita para volver al menu principal
         Debug.Log("GameOver");
+        gameManager.SaveScore();
     }
 
 }
