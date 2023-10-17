@@ -8,6 +8,10 @@ public class PlayerLife : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private int health;
+
+    [SerializeField] private AudioSource deathSoundEffect;
+    [SerializeField] private AudioSource damageSoundEffect;
+
     [SerializeField] Sprite fullHeart;
     [SerializeField] Sprite halfHeart;
     [SerializeField] Sprite noHeart;
@@ -36,6 +40,7 @@ public class PlayerLife : MonoBehaviour
             }
             else
             {
+                damageSoundEffect.Play();
                 anim.SetTrigger("hit");
             }
         }
@@ -80,6 +85,7 @@ public class PlayerLife : MonoBehaviour
     {
         rb.bodyType = RigidbodyType2D.Static;
         anim.SetTrigger("death");
+        deathSoundEffect.Play();
     }
 
     private void GameOver()
