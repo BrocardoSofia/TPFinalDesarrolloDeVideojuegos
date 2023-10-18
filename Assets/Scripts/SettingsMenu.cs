@@ -8,6 +8,7 @@ public class SettingsMenu : MonoBehaviour
 {
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private Dropdown resolutionsDropDown;
+    [SerializeField] private Canvas menuUI;
 
     Resolution[] resolutions;
 
@@ -15,6 +16,7 @@ public class SettingsMenu : MonoBehaviour
     {
         string option;
         List<string> options = new List<string>();
+        closeMenu();
 
         resolutions = Screen.resolutions;
         resolutionsDropDown.ClearOptions();       
@@ -41,5 +43,15 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+    }
+
+    public void closeMenu()
+    {
+        menuUI.enabled = false;
+    }
+
+    public void openMenu()
+    {
+        menuUI.enabled = true;
     }
 }
