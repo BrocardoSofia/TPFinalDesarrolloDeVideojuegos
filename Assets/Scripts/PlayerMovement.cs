@@ -32,8 +32,6 @@ public class PlayerMovement : MonoBehaviour
         dirX = 0f;
         state = MovementState.idle;
         jumpCount = 0;
-
-        //FALTA agregar sprite de personaje segun la skin que eliga el jugador
     }
 
     // Update is called once per frame

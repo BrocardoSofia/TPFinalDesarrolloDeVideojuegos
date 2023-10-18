@@ -2,13 +2,50 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private enum playerSkin { mask, frog, pink, blue};
-    private playerSkin skin;
+    public static GameManager instance;
+
+    public FloatingTextManager floatingTextManager;
     private int score = 0;
+
+    private void Awake()
+    {
+        if (GameManager.instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            SceneManager.sceneLoaded += LoadState;
+            DontDestroyOnLoad(gameObject);
+        }
+
+    }
+
+    public void SaveState()
+    {
+        int saveValue = score;
+
+        PlayerPrefs.SetInt("SaveState", saveValue);
+
+    }
+
+    private void LoadState(Scene s, LoadSceneMode mode)
+    {
+        if (PlayerPrefs.HasKey("SaveState"))
+        {
+            //Load score
+            score = PlayerPrefs.GetInt("SaveState");
+        }
+
+
+    }
 
     public void addScore(int points)
     {
@@ -29,22 +66,9 @@ public class GameManager : MonoBehaviour
         return score;
     }
 
-    public void setSkin(int skinSelected)
+    //Floating text
+    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
     {
-        switch(skinSelected)
-        {
-            case 1:
-                skin = playerSkin.mask;
-                break;
-            case 2:
-                skin = playerSkin.frog;
-                break;
-            case 3:
-                skin = playerSkin.pink;
-                break;
-            case 4:
-                skin = playerSkin.blue;
-                break;
-        }
+        floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
     }
 }

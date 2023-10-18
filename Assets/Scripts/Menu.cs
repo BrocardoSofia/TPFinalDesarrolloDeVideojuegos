@@ -9,6 +9,13 @@ public class Menu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        highScore.text = "HighScore: " + PlayerPrefs.GetInt("HighScore") + " pts";
+        if(PlayerPrefs.HasKey("HighScore"))
+        {
+            highScore.text = "HighScore: " + PlayerPrefs.GetInt("HighScore") + " pts";
+        }
+        else
+        {
+            highScore.text = "HighScore: " + 0 + " pts";
+        }
     }
 }
