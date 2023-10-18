@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
@@ -48,6 +49,11 @@ public class PlayerLife : MonoBehaviour
         {
             anim.ResetTrigger("hit");
         }
+
+        if(collision.gameObject.CompareTag("Flag"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 
     private void HeathBar()
@@ -91,8 +97,9 @@ public class PlayerLife : MonoBehaviour
     private void GameOver()
     {
         //agregar pantalla de game over con el puntaje y un boton de casita para volver al menu principal
-        Debug.Log("GameOver");
-        
+        SceneManager.LoadScene("GameOverScene");
+
+
     }
 
 }
