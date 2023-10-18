@@ -7,7 +7,7 @@ public class ExitButton : MonoBehaviour
     [SerializeField] private AudioSource pressSoundEffect;
     void doExitGame()
     {
-
+        pressSoundEffect.Play();
         Application.Quit();
     }
 }
