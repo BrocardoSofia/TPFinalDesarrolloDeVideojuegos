@@ -70,6 +70,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void resetScore()
+    {
+        int saveValue = 0;
+
+        PlayerPrefs.SetInt("SaveState", saveValue);
+    }
+
     public int getScore()
     {
         return score;

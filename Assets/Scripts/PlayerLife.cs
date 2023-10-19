@@ -64,6 +64,7 @@ public class PlayerLife : MonoBehaviour
         {
             gameManager.SaveScore();
             rb.bodyType = RigidbodyType2D.Static;
+            gameManager.resetScore();
             anim.SetTrigger("death");
             SceneManager.LoadScene("GameCompleted");
         }
@@ -103,6 +104,7 @@ public class PlayerLife : MonoBehaviour
     private void Die()
     {
         rb.bodyType = RigidbodyType2D.Static;
+        gameManager.resetScore();
         anim.SetTrigger("death");
         deathSoundEffect.Play();
     }
