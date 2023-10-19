@@ -13,6 +13,7 @@ public class ItemCollector : MonoBehaviour
 
     private void Start()
     {
+        gameManager.updateScore();
         text_apples.text = gameManager.getScore() + " pts";
     }
 
@@ -20,6 +21,8 @@ public class ItemCollector : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Apple"))
         {
+            gameManager.SaveState();
+            gameManager.updateScore();
             collectSoundEffect.Play();
             Animator anim = collision.gameObject.GetComponent<Animator>();
             anim.Play("collected");

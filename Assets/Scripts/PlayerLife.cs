@@ -62,6 +62,7 @@ public class PlayerLife : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("EndPoint"))
         {
+            gameManager.SaveState();
             gameManager.SaveScore();
             rb.bodyType = RigidbodyType2D.Static;
             gameManager.resetScore();
@@ -104,6 +105,7 @@ public class PlayerLife : MonoBehaviour
     private void Die()
     {
         rb.bodyType = RigidbodyType2D.Static;
+        gameManager.SaveScore();
         gameManager.resetScore();
         anim.SetTrigger("death");
         deathSoundEffect.Play();
