@@ -52,7 +52,15 @@ public class PlayerLife : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Flag"))
         {
+            rb.bodyType = RigidbodyType2D.Static;
+            anim.SetTrigger("death");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else if(collision.gameObject.CompareTag("EndPoint"))
+        {
+            rb.bodyType = RigidbodyType2D.Static;
+            anim.SetTrigger("death");
+            SceneManager.LoadScene("GameCompleted");
         }
     }
 
