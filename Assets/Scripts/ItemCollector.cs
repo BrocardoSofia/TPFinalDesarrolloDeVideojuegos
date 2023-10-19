@@ -11,6 +11,11 @@ public class ItemCollector : MonoBehaviour
 
     [SerializeField] private GameManager gameManager;
 
+    private void Start()
+    {
+        text_apples.text = gameManager.getScore() + " pts";
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Apple"))

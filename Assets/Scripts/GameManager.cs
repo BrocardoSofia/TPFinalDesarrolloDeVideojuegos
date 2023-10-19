@@ -61,6 +61,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void updateScore()
+    {
+        if (PlayerPrefs.HasKey("SaveState"))
+        {
+            //Load score
+            score = PlayerPrefs.GetInt("SaveState");
+        }
+    }
+
     public int getScore()
     {
         return score;

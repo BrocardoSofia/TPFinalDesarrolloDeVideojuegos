@@ -10,6 +10,8 @@ public class PlayerLife : MonoBehaviour
     private Animator anim;
     private int health;
 
+    [SerializeField] private GameManager gameManager;
+
     [SerializeField] private AudioSource deathSoundEffect;
     [SerializeField] private AudioSource damageSoundEffect;
 
@@ -25,6 +27,7 @@ public class PlayerLife : MonoBehaviour
         health = 6;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        gameManager.updateScore();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -52,12 +55,14 @@ public class PlayerLife : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Flag"))
         {
+            gameManager.SaveState();
             rb.bodyType = RigidbodyType2D.Static;
             anim.SetTrigger("death");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else if(collision.gameObject.CompareTag("EndPoint"))
         {
+            gameManager.SaveScore();
             rb.bodyType = RigidbodyType2D.Static;
             anim.SetTrigger("death");
             SceneManager.LoadScene("GameCompleted");

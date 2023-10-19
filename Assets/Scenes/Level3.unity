@@ -1510,6 +1510,51 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &651062488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 651062490}
+  - component: {fileID: 651062489}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &651062489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651062488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb6a31aa739409468866378df97218b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatingTextManager: {fileID: 0}
+--- !u!4 &651062490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651062488}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 64.99314, y: 0.90023905, z: -0.02505918}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &709593229
 GameObject:
   m_ObjectHideFlags: 0
@@ -37501,6 +37546,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.59
       objectReference: {fileID: 0}
+    - target: {fileID: 1700572567022528828, guid: 52c960b9ab852ec48948101ee4a0454c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 651062489}
+    - target: {fileID: 1700572567022528829, guid: 52c960b9ab852ec48948101ee4a0454c, type: 3}
+      propertyPath: heart1
+      value: 
+      objectReference: {fileID: 1031525857}
+    - target: {fileID: 1700572567022528829, guid: 52c960b9ab852ec48948101ee4a0454c, type: 3}
+      propertyPath: heart2
+      value: 
+      objectReference: {fileID: 83736653}
+    - target: {fileID: 1700572567022528829, guid: 52c960b9ab852ec48948101ee4a0454c, type: 3}
+      propertyPath: heart3
+      value: 
+      objectReference: {fileID: 1295283668}
+    - target: {fileID: 1700572567022528829, guid: 52c960b9ab852ec48948101ee4a0454c, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 651062489}
     - target: {fileID: 5618975757525718883, guid: 52c960b9ab852ec48948101ee4a0454c, type: 3}
       propertyPath: m_RootOrder
       value: 3
